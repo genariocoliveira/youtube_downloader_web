@@ -15,10 +15,6 @@ app = Flask(__name__)
 from config import Config
 app.config.from_object(Config)
 
-# Inicializar extensões
-from extensions import moment
-moment.init_app(app)
-
 # Configurações para o yt-dlp (áudio)
 ydl_opts = {
     'format': 'bestaudio/best',
