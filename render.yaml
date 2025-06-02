@@ -3,9 +3,9 @@ services:
     name: youtube-audio-downloader
     env: python
     buildCommand: |
-      pip install -r requirements.txt
       apt-get update && apt-get install -y ffmpeg
-    startCommand: gunicorn app:app
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.8.0
@@ -16,4 +16,5 @@ services:
       - key: DOWNLOADS_DIR
         value: /tmp/downloads
     healthCheckPath: /
-    autoDeploy: true 
+    autoDeploy: true
+    plan: free 
