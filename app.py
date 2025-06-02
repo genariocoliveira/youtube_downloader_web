@@ -34,6 +34,10 @@ ydl_opts = {
 # Garante que o diretório de downloads exista
 os.makedirs(Config.DOWNLOADS_DIR, exist_ok=True)
 
+@app.context_processor
+def inject_now():
+    return {'now': datetime.now()}
+
 @app.route('/')
 def index():
     return render_template('index.html')
