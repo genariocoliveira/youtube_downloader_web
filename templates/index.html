@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Baixar Áudio{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Baixar Áudio do YouTube</h1>
+    <p>Baixe áudios do YouTube facilmente.</p>
+    <form id="downloadForm" action="{{ url_for('download_audio') }}" method="post">
+        <input type="text" id="youtube_url" name="youtube_url" placeholder="Cole a URL do YouTube aqui" required>
+        <button type="submit">Baixar Áudio</button>
+    </form>
+</div>
+{% endblock %}
