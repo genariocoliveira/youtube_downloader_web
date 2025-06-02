@@ -2,10 +2,18 @@ services:
   - type: web
     name: youtube-audio-downloader
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      pip install -r requirements.txt
+      apt-get update && apt-get install -y ffmpeg
     startCommand: gunicorn app:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.8.0
       - key: SECRET_KEY
-        generateValue: true 
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
+      - key: DOWNLOADS_DIR
+        value: /tmp/downloads
+    healthCheckPath: /
+    autoDeploy: true 
